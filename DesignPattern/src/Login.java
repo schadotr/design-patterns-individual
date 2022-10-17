@@ -7,7 +7,6 @@ import java.util.Scanner;
 
 public class Login {
     private int typeOfUser;
-    private String username;
     private Scanner inputScanner = new Scanner(System.in);
 
 
@@ -57,7 +56,7 @@ public class Login {
             System.out.println("Invalid 10 login attempts. Logged out of the menu !!");
             return null;
         }
-        System.out.println("Login successful Welcome :" + username);
+        System.out.println("Login successful Welcome :" + userObject.getUserName());
         return userObject;
 
     }
@@ -85,16 +84,11 @@ public class Login {
             String scannedUsername = inputScanner.next();
             String scannedPassword = inputScanner.next();
             if(authentication(scannedUsername, scannedPassword)){
-                setUsername(scannedUsername);
-                return new UserInfoItem(typeOfUser, username, scannedPassword);
+                return new UserInfoItem(typeOfUser, scannedUsername, scannedPassword);
             }
             else{
                 countWrongAttempts++;
             }
         }
-    }
-
-    private void setUsername(String username){
-        this.username = username;
     }
 }

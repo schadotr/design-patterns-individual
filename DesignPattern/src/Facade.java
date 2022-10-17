@@ -10,13 +10,14 @@ import java.util.Scanner;
 
 public class Facade {
 
-	private Scanner inputScanner = new Scanner(System.in);
+	private final Scanner inputScanner = new Scanner(System.in);
 
 	private int userType;
 	private Product theSelectedProduct;
 	private int nProductCategory;
 	private List<Product> theProductList;
 	private Person thePerson;
+
 
 	public Facade(){
 		System.out.println("============== Facade Pattern ==============");
@@ -30,6 +31,7 @@ public class Facade {
 			System.out.println("Exited from the System !!!!");
 			return;
 		}
+		inputProductSelection();
 	}
 
 	public boolean login() {
@@ -83,7 +85,7 @@ public class Facade {
 
 	}
 
-	public Product SelectProduct() {
+	public Product selectProduct() {
 		return null;
 	}
 
@@ -96,6 +98,14 @@ public class Facade {
 	}
 
 	public void setPerson(UserInfoItem userInfoItem){
+		this.thePerson = PersonFactory.createPerson(userInfoItem.getUserType());
+	}
 
+	public void inputProductSelection(){
+		System.out.println("Select from the following Product Menus : \n1. Meat Product Menu \n2. Produce Product Menu");
+		int menuOption = inputScanner.nextInt();
+		switch (menuOption){
+
+		}
 	}
 }
