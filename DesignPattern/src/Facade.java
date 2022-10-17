@@ -20,16 +20,29 @@ public class Facade {
 
 	public Facade(){
 		System.out.println("============== Facade Pattern ==============");
+		initiateFacade();
 	}
 
-	public void initiateFacade(){
+	private void initiateFacade(){
 		System.out.println("Initiate Facade Method has been called !!");
 		boolean isLoginSuccessful = login();
+		if(!isLoginSuccessful){
+			System.out.println("Exited from the System !!!!");
+			return;
+		}
 	}
 
 	public boolean login() {
 		Login loginObject = new Login();
 		setUserType(loginObject.userTypeSelection());
+		if(userType == 2){
+			return false;
+		}
+		UserInfoItem user = loginObject.displayLoginForm();
+		if(user == null){
+			return false;
+		}
+		createUser(user);
 		return true;
 	}
 
@@ -58,7 +71,8 @@ public class Facade {
 	}
 
 	public void createUser(UserInfoItem userinfoitem) {
-
+		setUserType(userinfoitem.getUserType());
+		setPerson(userinfoitem);
 	}
 
 	public void createProductList() {
@@ -79,5 +93,9 @@ public class Facade {
 
 	public void setUserType(int typeOfUser){
 		this.userType = typeOfUser;
+	}
+
+	public void setPerson(UserInfoItem userInfoItem){
+
 	}
 }
