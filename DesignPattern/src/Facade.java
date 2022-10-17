@@ -10,6 +10,8 @@ import java.util.Scanner;
 
 public class Facade {
 
+	private Scanner inputScanner = new Scanner(System.in);
+
 	private int userType;
 	private Product theSelectedProduct;
 	private int nProductCategory;
@@ -17,15 +19,18 @@ public class Facade {
 	private Person thePerson;
 
 	public Facade(){
-		
+		System.out.println("============== Facade Pattern ==============");
 	}
 
 	public void initiateFacade(){
-
+		System.out.println("Initiate Facade Method has been called !!");
+		boolean isLoginSuccessful = login();
 	}
 
 	public boolean login() {
-		return false;
+		Login loginObject = new Login();
+		setUserType(loginObject.userTypeSelection());
+		return true;
 	}
 
 	public void addTrading() {
