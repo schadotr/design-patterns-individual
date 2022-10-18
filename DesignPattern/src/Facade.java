@@ -1,5 +1,7 @@
 package DesignPattern;
 
+import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Scanner;
 
@@ -15,7 +17,7 @@ public class Facade {
 	private int userType;
 	private Product theSelectedProduct;
 	private int nProductCategory;
-	private List<Product> theProductList;
+	private ClassProductList theProductList;
 	private Person thePerson;
 
 
@@ -31,7 +33,10 @@ public class Facade {
 			System.out.println("Exited from the System !!!!");
 			return;
 		}
+		createProductList();
 		inputProductSelection();
+		this.theSelectedProduct = selectProduct();
+		System.out.println("The selected product is : " + this.theSelectedProduct.getProductName());
 	}
 
 	public boolean login() {
@@ -78,7 +83,8 @@ public class Facade {
 	}
 
 	public void createProductList() {
-
+		theProductList = new ClassProductList();
+		theProductList.readProductList();
 	}
 
 	public void AttachProductToUser() {
@@ -86,7 +92,21 @@ public class Facade {
 	}
 
 	public Product selectProduct() {
-		return null;
+		System.out.println("Select the Product");
+		List<Product> products = this.theProductList.productList;
+		Iterator<Product> iterator = (Iterator<Product>) this.theProductList.createIterator();
+		ProductIterator productIterator = new ProductIterator();
+		int index = 0;
+		while(productIterator.hasNext(iterator)){
+			Product product = productIterator.next(iterator);
+			System.out.println(Integer.toString(index) + " " + product.getProductName() + " " + product.getValue());
+			index++;
+		}
+		System.out.println("Select an option");
+		int option = inputScanner.nextInt();
+
+		Product selectedProduct = this.theProductList.productList.get(option - 1);
+		return selectedProduct;
 	}
 
 	public void productOperation() {
@@ -102,10 +122,17 @@ public class Facade {
 	}
 
 	public void inputProductSelection(){
-		System.out.println("Select from the following Product Menus : \n1. Meat Product Menu \n2. Produce Product Menu");
+		System.out.println("Select from the following Product Menus : \n0. Meat Product Menu \n1. Produce Product Menu");
 		int menuOption = inputScanner.nextInt();
 		switch (menuOption){
-
+			case 0:
+				this.theSelectedProduct = new Product("Meat", "");
+				break;
+			case 1:
+				this.theSelectedProduct = new Product("Produce", "");
+				break;
+			default:
+				throw new IllegalStateException("Unexpected value: " + menuOption);
 		}
 	}
 }
