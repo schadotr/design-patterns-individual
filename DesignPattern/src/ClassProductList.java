@@ -9,14 +9,14 @@ import java.util.List;
 
 
 public class ClassProductList {
-    List<Product> productList;
+    List<Product> productList; // List of objects type of Product
     public ClassProductList(){
         productList = new ArrayList<>();
-    }
+    } // initializing the list
 
     public void readProductList(){
         try{
-            File file = new File("DesignPattern/TextFiles/ProductInfo.txt");
+            File file = new File("DesignPattern/TextFiles/ProductInfo.txt"); // Reading the list of products from the given file
             BufferedReader bufferReader= new BufferedReader(new FileReader(file));
             String reader;
             while ((reader = bufferReader.readLine()) != null) {
@@ -29,12 +29,7 @@ public class ClassProductList {
         }
     }
 
-    public Iterator createIterator() {
+    public Iterator<Product> createIterator() {
         return this.productList.iterator();
-    }
-
-    public Reminder accept(NodeVisitor nodeVisitor) {
-        System.out.println("Product List Reminder ...");
-        return nodeVisitor.visitProduct(this);
-    }
+    } // Creating an Iterator for the iterator pattern
 }
