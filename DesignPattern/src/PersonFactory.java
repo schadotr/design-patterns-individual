@@ -1,32 +1,28 @@
 package DesignPattern;
 
-public class PersonFactory extends Person {
+public abstract class PersonFactory extends Person {
+    @Override
+    public void createProductMenu() {}
+
     public PersonFactory(ProductMenu theProductMenu) {
         super(theProductMenu);
     }
 
-    @Override
-    public void showMenu() {}
-
-    @Override
-    public ProductMenu createProductMenu() {
-        return null;
-    }
-
-    public static Person createPerson(int userType){
+    public static Person createPerson(int userType){ // Implements the factory design pattern
         Person person;
-        System.out.println("================  Factory Pattern  ================");
-        switch (userType){
-            case 0:
+        System.out.println("**********************************************************");
+        System.out.println("                            Factory Pattern                            ");
+        System.out.println("**********************************************************");
+        switch (userType) {
+            case 1 -> {
                 person = new Seller();
                 System.out.println("Seller object has been created!");
-                break;
-            case 1:
+            }
+            case 0 -> {
                 person = new Buyer();
                 System.out.println("Buyer object has been created!");
-                break;
-            default:
-                throw new IllegalStateException("Unexpected value: " + userType);
+            }
+            default -> throw new IllegalStateException("Unexpected value: " + userType);
         }
         return person;
     }
