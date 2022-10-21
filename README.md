@@ -1,2 +1,27 @@
-# design-patterns-individual
-Implementation of the Design Patterns discussed in the given assignment
+### Explanation
+Name of executed Classes and there functionality: <br>
+    -- Buyer Class - Inherits the Person class which specifies the type of user i.e. buyer. Calls the Bridge Pattern for the Menu Items
+    -- ClassProductList - Reads the content of the file and creates the list
+    -- Facade - Class that has the type of the facade pattern executes the classes for bridge, <br> factory, visitor and iterator pattern
+    -- LisIterator - Implements the Iterator pattern
+    -- ListIterator - Implements the Iterator pattern
+    -- Login - Class authenticating user at login
+    -- Main - Class to **initiate** the facade pattern 
+    -- NodeVisitor - Node Visitor class for implementing visitor pattern
+    -- MeatProductMenu - Meat Menu responsible for bridge pattern
+    -- Offering - Dummy Class
+    -- OfferingIterator - Implements the Iterators pattern
+    -- OfferingList - Dummy Class, creates the list of offering
+    -- OfferingMenu - Dummy Class, Offering Menu
+    -- Person - An abstract class for implementing Buyer and Seller
+    -- PersonFactory - Class implements factory pattern and returns the objects (expected)
+    -- ProduceProductMenu - Produce Menu responsible for bridge pattern
+    -- Product - Class for creating the object of the selected product
+    -- ProductIterator - Implements the Iterator pattern for getting the product from list
+    -- ProductMenu - Menu Interface
+    -- Reminder - Abstract Reminder class for Visitor Pattern
+    -- ReminderVisitor - Implementation of the Abstract Class
+    -- Seller - Inherits the Person class which specifies the type of user i.e. seller. Calls the Bridge Pattern for the Menu Items
+    -- Trading - Dummy Class
+    -- TradingMenu - Dummy class for displaying the trading menu
+    -- UserInfoItem - Stores the information of the user having the active session
